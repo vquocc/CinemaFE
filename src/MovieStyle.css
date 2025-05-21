@@ -1,0 +1,70 @@
+.movie-page-container {
+	position: relative;
+	font-family: Arial, sans-serif;
+	padding: 24px;
+}
+
+.banner-slider {
+	position: relative;
+ margin-bottom: 48px;
+}
+
+.banner-slide {
+	position: relative;
+}
+
+.banner-image {
+	width: 100%;
+	height: auto;
+	max-height: 450px;
+	object-fit: cover;
+}
+
+.quick-booking-bar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #f4f4f4;
+	padding: 12px 24px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	margin-top: -4px;
+	flex-wrap: wrap;
+	row-gap: 12px;
+}
+
+.booking-step {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.step-number {
+	background-color: #ff6b00;
+	color: #fff;
+	font-weight: bold;
+	width: 20px;
+	height: 20px;
+	text-align: center;
+	border-radius: 50%;
+	font-size: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.booking-select {
+	min-width: 140px;
+}
+
+.booking-button {
+	background-color: #f37021;
+	border-color: #f37021;
+	font-weight: bold;
+	padding: 0 24px;
+	height: 40px;
+}
+
+.booking-button:hover {
+	background-color: #d95e1c !important;
+	border-color: #d95e1c !important;
+}
