@@ -81,11 +81,11 @@ const SeatMap = ({ seatMapData, setSelectedSeatIds, setTotalAmount }) => {
 						const rowChar = String.fromCharCode('A'.charCodeAt(0) + rowIdx);
 						return (
 							<Box key={rowIdx} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-								<Typography sx={{ width: 20, textAlign: 'center' }}>{rowChar}</Typography>
+								<Typography sx={{ width: 20, textAlign: 'center',mr:2 }}>{rowChar}</Typography>
 								{Array.from({ length: maxColumn }).map((_, colIdx) => {
 									const seat = seatMap.get(`${rowIdx}-${colIdx}`);
 									if (!seat) {
-										return <Box key={colIdx} sx={{ width: 32, height: 32 }} />; // Ghế trống
+										return <Box key={colIdx} sx={{ width: 32, height: 32 }} />;
 									}
 
 									const isSelected = selectedSeats.some((s) => s.id === seat.id);
