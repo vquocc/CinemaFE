@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Typography, Button, Paper, CircularProgress } from '@mui/material';
 import { useAllMovies } from '~/api/allMovieApi';
+import { formatShowTime } from '~/utils/DateUtils';
 
-const InfoSidebar = ({ selectedSeatIds, totalAmount, movieId }) => {
-  const { dataMovie: movieDetails, loadingMovie, errMovie } = useAllMovies({ id: movieId });
+const InfoSidebar = ({ selectedSeatIds, totalAmount, movieId, showTimeData }) => {
+  const { data: movieDetails, isLoading, error } = useAllMovies({ id: movieId });
 
-  if (loadingMovie) return <CircularProgress sx={{ display: 'block', margin: 'auto' }} />;
-  if (errMovie) return <Typography color="error">Lỗi khi tải thông tin phim.</Typography>;
+  useEffect(() => {
+    console.log("Movie Details booking", movieDetails?.data?.data[0])
+    console.log("ShowTime Data :", showTimeData)
+  }, [movieDetails, showTimeData])
+
+  if (isLoading) return <CircularProgress sx={{ display: 'block', margin: 'auto' }} />;
+  if (error) return <Typography color="error">Lỗi khi tải thông tin phim.</Typography>;
+
 
   const movie = movieDetails?.data?.data[0];
 
@@ -14,22 +21,22 @@ const InfoSidebar = ({ selectedSeatIds, totalAmount, movieId }) => {
     <Paper sx={{ p: 2, width: 300, borderRadius: 2, boxShadow: 2 }}>
       <Box mb={2}>
         <img
-          src={movie?.poster || 'https://via.placeholder.com/300x400'}
-          alt={movie?.title || 'Poster'}
+          src={movie?.imgPortrait || 'https://via.placeholder.com/300x400'}
+          alt={movie?.name || 'Poster'}
           style={{ width: '100%', borderRadius: 4 }}
         />
       </Box>
       <Typography variant="h6" fontWeight="bold" mb={1}>
-        {movie?.title || 'Tên phim'}
+        {movie?.name || 'Tên phim'}
       </Typography>
       <Typography variant="body2" color="#ff9800" fontWeight="bold" mb={1}>
-        2D Phụ đề - T16
+        2D Phụ đề - {movie?.ageCode || '?'}
       </Typography>
       <Typography variant="body2" color="text.secondary" mb={1}>
-        Galaxy Đà Nẵng - RẠP 4
+        {showTimeData?.cinema?.name} - {showTimeData?.room?.name}
       </Typography>
       <Typography variant="body2" color="text.secondary">
-        Suất: 12:15 - Thứ Ba, 20/05/2025
+        {showTimeData? formatShowTime(showTimeData.startDate,showTimeData.startTime):''}
       </Typography>
       <Box mt={2}>
         <Typography variant="body2" mb={1}>

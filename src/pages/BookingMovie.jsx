@@ -79,7 +79,7 @@ const BookingMovie = () => {
           setSelectedSeatIds={setSelectedSeatIds}
           setTotalAmount={setTotalAmount}
         />
-        <InfoSidebar selectedSeatIds={selectedSeatIds} totalAmount={totalAmount} movieId={movieId} />
+        <InfoSidebar selectedSeatIds={selectedSeatIds} totalAmount={totalAmount} movieId={movieId} showTimeData = {movieShowtimeData?.data?.data} />
       </Box>
     </Box>
   );
